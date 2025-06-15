@@ -132,15 +132,39 @@ document.addEventListener('DOMContentLoaded', () => {
         toggleLoading(true);
 
         try {
-            // TODO: Google Forms 제출 로직 구현
-            await new Promise(resolve => setTimeout(resolve, 1000)); // 임시 지연
+            // 폼 데이터 수집
+            const formData = {
+                name: nameInput.value.trim(),
+                email: emailInput.value.trim(),
+                phone: phoneInput.value.trim(),
+                agreement: document.getElementById('agree').checked ? '동의' : '미동의'
+            };
+
+            // 구글 시트로 데이터 전송
+            const response = await fetch('https://script.google.com/macros/s/AKfycbx0mbVH4-aoFM24pbRgy0BoBZrP7MtL26Oa2vlTJ_0qTEScIBCM80MrrLoqHLSelQwi/exec', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData)
+            });
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            const result = await response.json();
             
-            // 모달 표시
-            showSuccessModal();
-            
-            // 폼 초기화
-            form.reset();
-            submitButton.disabled = true;
+            if (result.result === 'success') {
+                // 모달 표시
+                showSuccessModal();
+                
+                // 폼 초기화
+                form.reset();
+                submitButton.disabled = true;
+            } else {
+                throw new Error('Failed to submit data');
+            }
         } catch (error) {
             showMessage('신청 중 오류가 발생했습니다. 다시 시도해주세요.');
             console.error('Form submission error:', error);
