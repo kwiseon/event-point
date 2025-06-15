@@ -118,6 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // 로딩 상태 토글
+
     const toggleLoading = (isLoading) => {
         const buttonContent = submitButton.querySelector('.button-content');
         if (isLoading) {
@@ -150,7 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
             };
 
             // 구글 시트로 데이터 전송
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbx-KDs62HwH30P9RA00-EH0COXfhvOL_ZWbmsixxh9irjdog90gugYHCmDH4f3lyCHl2Q/exec';
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbzKoeorAGEsbaKeWzJr1FjqDmUVikbv_xyUrEiQ8tln00_1b7iEzGdqQdiS3JLJQhoZQA/exec';
             
             // FormData 객체 생성
             const form = new FormData();
