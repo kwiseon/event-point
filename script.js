@@ -153,17 +153,13 @@ document.addEventListener('DOMContentLoaded', () => {
             // 구글 시트로 데이터 전송
             const scriptURL = 'https://script.google.com/macros/s/AKfycbzKoeorAGEsbaKeWzJr1FjqDmUVikbv_xyUrEiQ8tln00_1b7iEzGdqQdiS3JLJQhoZQA/exec';
             
-            // FormData 객체 생성
-            const form = new FormData();
-            form.append('name', formData.name);
-            form.append('email', formData.email);
-            form.append('phone', formData.phone);
-            form.append('agreement', formData.agreement);
-
             // fetch 요청
             const response = await fetch(scriptURL, {
                 method: 'POST',
-                body: form
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData)
             });
 
             if (response.ok) {
