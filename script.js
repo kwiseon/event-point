@@ -10,7 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 슬라이더 관련 요소들
     const slides = document.querySelectorAll('.slide');
-    const indicators = document.querySelectorAll('.indicator');
     let currentSlide = 0;
     let slideInterval;
 
@@ -21,51 +20,17 @@ document.addEventListener('DOMContentLoaded', () => {
         [nameInput, emailInput, phoneInput].forEach(input => {
             input.addEventListener('input', validateForm);
         });
-
-        // 슬라이더 초기화
         startSlideShow();
-
-        // 인디케이터 클릭 이벤트
-        indicators.forEach((indicator, index) => {
-            indicator.addEventListener('click', () => {
-                stopSlideShow();
-                updateSlide(index);
-                startSlideShow();
-            });
-        });
     };
 
     // 슬라이드쇼 시작
     const startSlideShow = () => {
-        // 기존 인터벌이 있다면 제거
-        if (slideInterval) {
-            clearInterval(slideInterval);
-        }
-        // 3초마다 다음 슬라이드로 전환
+        if (slideInterval) clearInterval(slideInterval);
         slideInterval = setInterval(() => {
-            updateSlide((currentSlide + 1) % slides.length);
-        }, 3000);
-    };
-
-    // 슬라이드쇼 정지
-    const stopSlideShow = () => {
-        if (slideInterval) {
-            clearInterval(slideInterval);
-        }
-    };
-
-    // 슬라이드 업데이트
-    const updateSlide = (index) => {
-        // 현재 활성화된 슬라이드와 인디케이터의 active 클래스 제거
-        slides[currentSlide].classList.remove('active');
-        indicators[currentSlide].classList.remove('active');
-        
-        // 새로운 슬라이드와 인디케이터에 active 클래스 추가
-        slides[index].classList.add('active');
-        indicators[index].classList.add('active');
-        
-        // 현재 슬라이드 인덱스 업데이트
-        currentSlide = index;
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }, 2000); // 2초 간격
     };
 
     // 전화번호 입력 처리
@@ -118,7 +83,6 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // 로딩 상태 토글
-
     const toggleLoading = (isLoading) => {
         const buttonContent = submitButton.querySelector('.button-content');
         if (isLoading) {
