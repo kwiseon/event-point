@@ -151,9 +151,9 @@ document.addEventListener('DOMContentLoaded', () => {
             };
 
             // 구글 시트로 데이터 전송
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbzKoeorAGEsbaKeWzJr1FjqDmUVikbv_xyUrEiQ8tln00_1b7iEzGdqQdiS3JLJQhoZQA/exec';
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbxUmcQW471JkaBp_jzmAFA03G2-TbkkBHDic9LwZiLHsSFcjDH-QOzd1CBnNXgwkIkjxw/exec';
             
-            // fetch 요청
+            // fetch 요청 (JSON 방식)
             const response = await fetch(scriptURL, {
                 method: 'POST',
                 headers: {
