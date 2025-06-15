@@ -165,16 +165,32 @@ document.addEventListener('DOMContentLoaded', () => {
     const showSuccessModal = () => {
         modal.style.display = 'flex';
         modal.classList.add('show');
-        
-        // 3초 후 모달 닫기
+        // 3초 후 모달 닫기 및 페이지 새로고침
         setTimeout(() => {
             modal.classList.remove('show');
             setTimeout(() => {
                 modal.style.display = 'none';
+                location.reload(); // 전체 페이지 새로고침
             }, 300);
         }, 3000);
     };
 
     // 애플리케이션 초기화
     init();
+
+    const formIframe = document.getElementById('googleFormFrame');
+    if (formIframe) {
+        formIframe.addEventListener('load', function() {
+            try {
+                const currentUrl = formIframe.contentWindow.location.href;
+                if (currentUrl.includes('formResponse')) {
+                    setTimeout(() => {
+                        formIframe.src = formIframe.src.split('?')[0] + '?embedded=true';
+                    }, 3000);
+                }
+            } catch (e) {
+                // cross-origin 에러 무시
+            }
+        });
+    }
 }); 
