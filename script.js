@@ -107,6 +107,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const showMessage = (message, type = 'error') => {
         messageDiv.textContent = message;
         messageDiv.className = `message ${type}`;
+        
+        // 5초 후 메시지 자동 제거
+        setTimeout(() => {
+            messageDiv.textContent = '';
+            messageDiv.className = 'message';
+        }, 5000);
     };
 
     // 로딩 상태 토글
@@ -163,12 +169,26 @@ document.addEventListener('DOMContentLoaded', () => {
                 form.reset();
                 submitButton.disabled = true;
             } else {
-                throw new Error('Failed to submit data');
+                const errorData = await response.text();
+                console.error('Server response:', errorData);
+                throw new Error(`서버 응답 오류: ${response.status} ${response.statusText}`);
             }
 
         } catch (error) {
-            showMessage('신청 중 오류가 발생했습니다. 다시 시도해주세요.');
-            console.error('Form submission error:', error);
+            console.error('Detailed error:', error);
+            
+            // 오류 메시지 구체화
+            let errorMessage = '신청 중 오류가 발생했습니다. ';
+            
+            if (error.name === 'TypeError' && error.message.includes('Failed to fetch')) {
+                errorMessage += '인터넷 연결을 확인해주세요.';
+            } else if (error.message.includes('서버 응답 오류')) {
+                errorMessage += '잠시 후 다시 시도해주세요.';
+            } else {
+                errorMessage += '다시 시도해주세요.';
+            }
+            
+            showMessage(errorMessage);
         } finally {
             toggleLoading(false);
         }
