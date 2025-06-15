@@ -80,6 +80,18 @@ document.addEventListener('DOMContentLoaded', () => {
         event.target.value = value;
     };
 
+    // 폼 유효성 검사
+    const validateForm = () => {
+        const isNameValid = nameInput.value.trim().length > 0;
+        const isEmailValid = isValidEmail(emailInput.value);
+        const isPhoneValid = isValidPhone(phoneInput.value);
+        const isAgreementValid = document.getElementById('agree').checked;
+
+        submitButton.disabled = !(isNameValid && isEmailValid && isPhoneValid && isAgreementValid);
+        
+        return isNameValid && isEmailValid && isPhoneValid && isAgreementValid;
+    };
+
     // 이메일 유효성 검사
     const isValidEmail = (email) => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -89,17 +101,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // 전화번호 유효성 검사
     const isValidPhone = (phone) => {
         return phone.length >= 10 && phone.length <= 11;
-    };
-
-    // 폼 유효성 검사
-    const validateForm = () => {
-        const isNameValid = nameInput.value.trim().length > 0;
-        const isEmailValid = isValidEmail(emailInput.value);
-        const isPhoneValid = isValidPhone(phoneInput.value);
-
-        submitButton.disabled = !(isNameValid && isEmailValid && isPhoneValid);
-        
-        return isNameValid && isEmailValid && isPhoneValid;
     };
 
     // 메시지 표시
@@ -141,30 +142,30 @@ document.addEventListener('DOMContentLoaded', () => {
             };
 
             // 구글 시트로 데이터 전송
-            const response = await fetch('https://script.google.com/macros/s/AKfycbx0mbVH4-aoFM24pbRgy0BoBZrP7MtL26Oa2vlTJ_0qTEScIBCM80MrrLoqHLSelQwi/exec', {
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbx0mbVH4-aoFM24pbRgy0BoBZrP7MtL26Oa2vlTJ_0qTEScIBCM80MrrLoqHLSelQwi/exec';
+            
+            // FormData 객체 생성
+            const form = new FormData();
+            form.append('name', formData.name);
+            form.append('email', formData.email);
+            form.append('phone', formData.phone);
+            form.append('agreement', formData.agreement);
+
+            // fetch 요청
+            const response = await fetch(scriptURL, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData)
+                body: form
             });
 
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-
-            const result = await response.json();
-            
-            if (result.result === 'success') {
-                // 모달 표시
+            if (response.ok) {
+                // 성공 시 처리
                 showSuccessModal();
-                
-                // 폼 초기화
                 form.reset();
                 submitButton.disabled = true;
             } else {
                 throw new Error('Failed to submit data');
             }
+
         } catch (error) {
             showMessage('신청 중 오류가 발생했습니다. 다시 시도해주세요.');
             console.error('Form submission error:', error);
@@ -175,7 +176,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 성공 모달 표시
     const showSuccessModal = () => {
+        modal.style.display = 'flex';
         modal.classList.add('show');
+        
+        // 3초 후 모달 닫기
         setTimeout(() => {
             modal.classList.remove('show');
             setTimeout(() => {
