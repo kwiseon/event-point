@@ -1,27 +1,9 @@
 // DOM Elements
 document.addEventListener('DOMContentLoaded', () => {
-    const form = document.getElementById('pointForm');
-    const nameInput = document.getElementById('name');
-    const emailInput = document.getElementById('email');
-    const phoneInput = document.getElementById('phone');
-    const messageDiv = document.getElementById('message');
-    const submitButton = form.querySelector('button[type="submit"]');
-    const modal = document.getElementById('successModal');
-
     // 슬라이더 관련 요소들
     const slides = document.querySelectorAll('.slide');
     let currentSlide = 0;
     let slideInterval;
-
-    // 초기화 함수
-    const init = () => {
-        form.addEventListener('submit', handleSubmit);
-        phoneInput.addEventListener('input', handlePhoneInput);
-        [nameInput, emailInput, phoneInput].forEach(input => {
-            input.addEventListener('input', validateForm);
-        });
-        startSlideShow();
-    };
 
     // 슬라이드쇼 시작
     const startSlideShow = () => {
@@ -31,6 +13,28 @@ document.addEventListener('DOMContentLoaded', () => {
             currentSlide = (currentSlide + 1) % slides.length;
             slides[currentSlide].classList.add('active');
         }, 2000); // 2초 간격
+    };
+    if (slides.length > 1) {
+        startSlideShow();
+    }
+
+    // 이하 기존 폼 관련 코드...
+    const form = document.getElementById('pointForm');
+    if (!form) return;
+    const nameInput = document.getElementById('name');
+    const emailInput = document.getElementById('email');
+    const phoneInput = document.getElementById('phone');
+    const messageDiv = document.getElementById('message');
+    const submitButton = form.querySelector('button[type="submit"]');
+    const modal = document.getElementById('successModal');
+
+    // 초기화 함수
+    const init = () => {
+        form.addEventListener('submit', handleSubmit);
+        phoneInput.addEventListener('input', handlePhoneInput);
+        [nameInput, emailInput, phoneInput].forEach(input => {
+            input.addEventListener('input', validateForm);
+        });
     };
 
     // 전화번호 입력 처리

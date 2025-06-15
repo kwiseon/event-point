@@ -13,10 +13,10 @@ body {
     background-color: #1a1033;
     position: relative;
     overflow-x: hidden;
-    height: 100vh;
+    height: auto;
     margin: 0;
     padding: 0;
-    overflow: hidden;
+    overflow-y: auto;
 }
 
 body::before {
@@ -37,6 +37,7 @@ body::before {
 .container {
     display: flex;
     min-height: 100vh;
+    height: auto;
     max-width: 1920px;
     margin: 0 auto;
     position: relative;
@@ -60,6 +61,8 @@ body::before {
     flex: 6;
     position: relative;
     overflow: hidden;
+    height: auto;
+    min-height: 0;
 }
 
 .media-container {
@@ -147,6 +150,8 @@ body::before {
     position: relative;
     overflow: hidden;
     background: linear-gradient(135deg, #1a1033 0%, #2a1545 100%);
+    height: auto;
+    min-height: 0;
 }
 
 .form-section::before {
