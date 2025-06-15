@@ -107,9 +107,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const showMessage = (message, type = 'error') => {
         messageDiv.textContent = message;
         messageDiv.className = `message ${type}`;
+        messageDiv.style.display = 'block';
         
         // 5초 후 메시지 자동 제거
         setTimeout(() => {
+            messageDiv.style.display = 'none';
             messageDiv.textContent = '';
             messageDiv.className = 'message';
         }, 5000);
@@ -188,7 +190,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 errorMessage += '다시 시도해주세요.';
             }
             
-            showMessage(errorMessage);
+            showMessage(errorMessage, 'error');
         } finally {
             toggleLoading(false);
         }
