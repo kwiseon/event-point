@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Event Point - 오프라인 행사 포인트 신청">
+    <title>Event Point - 포인트 신청</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="media-section">
+            <div class="media-container">
+                <div class="slider">
+                    <div class="slide active">
+                        <img src="images/3.jpg" alt="이미지 3" class="slide-image">
+                    </div>
+                    <div class="slide">
+                        <img src="images/6.jpg" alt="이미지 6" class="slide-image">
+                    </div>
+                    <div class="slide">
+                        <img src="images/2.jpg" alt="이미지 2" class="slide-image">
+                    </div>
+                    <div class="slide">
+                        <img src="images/1.jpg" alt="이미지 1" class="slide-image">
+                    </div>
+                </div>
+                <div class="slide-content">
+                    <span class="brand-tag">슈퍼로이어</span>
+                    <h1 class="headline">
+                        강력해진 문서 작성 기능<br>
+                        이제 롱폼의 시대
+                    </h1>
+                    <p class="subtitle">&lt;롱폼&gt;은 슈퍼로이어와 실시간 대화하며 문서 초안부터 최종본까지 완성하는 스마트 문서 작성 기능입니다.</p>
+                </div>
+                <div class="slide-indicators">
+                    <button class="indicator active"></button>
+                    <button class="indicator"></button>
+                    <button class="indicator"></button>
+                    <button class="indicator"></button>
+                </div>
+            </div>
+        </div>
+        <div class="form-section">
+            <div class="particles-container">
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+            </div>
+            <div class="event-tag">EVENT</div>
+            <div class="point-card">
+                <p class="card-title">슈퍼로이어 회원 모두</p>
+                <p class="point-amount">50,000P</p>
+                <div class="card-particle card-particle-1"></div>
+                <div class="card-particle card-particle-2"></div>
+            </div>
+            <form id="pointForm" class="point-form">
+                <div class="form-group">
+                    <label for="name">이름<span class="required">*</span></label>
+                    <input type="text" id="name" name="name" required placeholder="홍길동">
+                </div>
+                <div class="form-group">
+                    <label for="email">슈퍼로이어 아이디<span class="required">*</span></label>
+                    <input type="email" id="email" name="email" required placeholder="슈퍼로이어 ID는 이메일 형태입니다.">
+                </div>
+                <div class="form-group">
+                    <label for="phone">핸드폰 번호<span class="required">*</span></label>
+                    <input type="tel" id="phone" name="phone" required maxlength="11" placeholder="하이픈 없이 입력해주세요.">
+                </div>
+                <div class="agreement-box">
+                    <label class="agreement-label">
+                        <input type="checkbox" id="agree" required>
+                        <span class="agreement-text">
+                            개인정보 수집 및 이용에 동의합니다.<span class="required">*</span>
+                        </span>
+                    </label>
+                    <p class="agreement-description">
+                        입력하신 정보는 포인트 지급과 이벤트 후속 메시지 발송에 사용되며, 모든 메시지 발송 후 즉시 파기됩니다.
+                    </p>
+                </div>
+                <button type="submit" class="submit-button">
+                    <span class="button-content">신청하기</span>
+                </button>
+                <div id="message" class="message" role="alert"></div>
+            </form>
+        </div>
+    </div>
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <div class="success-icon">✓</div>
+            <p>신청이 완료되었습니다!</p>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 
