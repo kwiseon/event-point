@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
             slides[currentSlide].classList.remove('active');
             currentSlide = (currentSlide + 1) % slides.length;
             slides[currentSlide].classList.add('active');
-        }, 2000); // 2초 간격
+        }, 3000); // 3초 간격
     };
     if (slides.length > 1) {
         startSlideShow();
