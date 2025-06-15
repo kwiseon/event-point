@@ -150,7 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
             };
 
             // 구글 시트로 데이터 전송
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbx0mbVH4-aoFM24pbRgy0BoBZrP7MtL26Oa2vlTJ_0qTEScIBCM80MrrLoqHLSelQwi/exec';
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbzG8C3f6gu7GajghsaJeaRjgcvs8pJXUTPghVNTA1fHbqJQzFSlkg6LlqGwzRkTFjI-IQ/exec';
             
             // FormData 객체 생성
             const form = new FormData();
