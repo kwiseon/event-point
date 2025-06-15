@@ -57,35 +57,18 @@
                 <div class="card-particle card-particle-1"></div>
                 <div class="card-particle card-particle-2"></div>
             </div>
-            <form id="pointForm" class="point-form">
-                <div class="form-group">
-                    <label for="name">이름<span class="required">*</span></label>
-                    <input type="text" id="name" name="name" required placeholder="홍길동">
-                </div>
-                <div class="form-group">
-                    <label for="email">슈퍼로이어 아이디<span class="required">*</span></label>
-                    <input type="email" id="email" name="email" required placeholder="슈퍼로이어 ID는 이메일 형태입니다.">
-                </div>
-                <div class="form-group">
-                    <label for="phone">핸드폰 번호<span class="required">*</span></label>
-                    <input type="tel" id="phone" name="phone" required maxlength="11" placeholder="하이픈 없이 입력해주세요.">
-                </div>
-                <div class="agreement-box">
-                    <label class="agreement-label">
-                        <input type="checkbox" id="agree" required>
-                        <span class="agreement-text">
-                            개인정보 수집 및 이용에 동의합니다.<span class="required">*</span>
-                        </span>
-                    </label>
-                    <p class="agreement-description">
-                        입력하신 정보는 포인트 지급과 이벤트 후속 메시지 발송에 사용되며, 모든 메시지 발송 후 즉시 파기됩니다.
-                    </p>
-                </div>
-                <button type="submit" class="submit-button">
-                    <span class="button-content">신청하기</span>
-                </button>
-                <div id="message" class="message" role="alert"></div>
-            </form>
+            <div class="google-form-wrap">
+                <iframe 
+                    src="https://docs.google.com/forms/d/e/1FAIpQLSfBEF77m4aIIQ69dFXqvtyCMxME-7Yo-o8CgFFnI3IXOzpdtA/viewform?embedded=true" 
+                    width="100%" 
+                    height="900" 
+                    frameborder="0" 
+                    marginheight="0" 
+                    marginwidth="0"
+                    style="border:none;">
+                    로드 중…
+                </iframe>
+            </div>
         </div>
     </div>
     <div id="successModal" class="modal">
